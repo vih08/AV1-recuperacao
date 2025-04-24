@@ -16,7 +16,7 @@ defende() {
     console.log(`${this.nome} defende!`)
 }
 }
-   
+
 class Guerreiro extends Personagem {
     constructor(vida, mana, arma) {
         super(vida, mana)
@@ -43,10 +43,17 @@ class Arqueiro extends Personagem {
         this.arco = arco
     }
 
+
 atacar() {
     console.log(`${this.nome} atira com ${this.arco}!`)
     }
 }
 
+const guerreiro = new Guerreiro ("x", 10, 5, "Espada")
+const mago = new Mago("y", 10, 5, "Fogo")
+const arqueiro = new arqueiro('z',10, 5, 'varios arcos junto')
 
+guerreiro.atacar()
+mago.atacar()
+arqueiro.atacar()
 
