@@ -36,11 +36,11 @@ setVida(vida) {
 }
 
 atacar() {
-    console.log(`${this.nome} ataca!`)
+    console.log(`${this.nome} ataca`)
 }
 
 defende() {
-    console.log(`${this.nome} defende!`)
+    console.log(`${this.nome} defende`)
 }
 }
 
@@ -60,7 +60,7 @@ class Guerreiro extends Personagem {
     }
 
     atacar() {
-        console.log(`${this.nome} ataca com ${this.arma}!`)
+        console.log(`${this.nome} ataca com ${this.arma}`)
     }
 
 }
@@ -101,7 +101,7 @@ class Arqueiro extends Personagem {
     }
 
     atacar() {
-    console.log(`${this.nome} atira com ${this.arco}!`)
+    console.log(`${this.nome} atira com ${this.arco}`)
     }
 }
 
@@ -113,3 +113,69 @@ guerreiro.atacar()
 mago.atacar()
 arqueiro.atacar()
 
+atacar(oponente)
+    const dano = 10
+    oponente.setVida(oponente.getVida() - dano)
+    console.log(`Guerreiro atacou Vida do oponente reduziu ${dano}. Vida atual: ${oponente.getVida()}`)
+
+class Jogo {
+    constructor() {
+        this.personagens = []
+    }
+    adicionarPersonagem(personagem) {
+        this.personagens.push(personagem)
+    }
+    executarAtaques() {
+        this.personagens.forEach((personagem, index) => {
+            const oponente = this.personagens[(index + 1) % this.personagens.length]
+            console.log(personagem.atacar(oponente))
+        })
+    }
+}
+
+function batalhar(p1, p2) {
+    while (p1.getVida() > 0 & p2.getVida() > 0) {
+        p1.atacar(p2)
+        if (p2.getVida() > 0) {
+            p2.atacar(p1)
+        }
+    }
+    console.log(p1.getVida() > 0 ? `${p1.jogador} venceu` : `${p2.jogador} venceu`)
+}
+
+class Jogo {
+    constructor() {
+        this.personagens = []
+    }
+    adicionarPersonagem(personagem) {
+        this.personagens.push(personagem)
+    }
+    turno() {
+        this.personagens.forEach((personagem, index) => {
+            const oponente = this.personagens[(index + 1) % this.personagens.length]
+            console.log(`${personagem.constructor.name} é pra estar realizando a ação`)
+
+            if (personagem instanceof Guerreiro) {
+                personagem.atacar(oponente)
+            } else if (personagem instanceof Mago) {
+                personagem.usarMagia()
+            } else if (personagem instanceof Arqueiro) {
+                personagem.atacar(oponente)
+            }
+            
+            const dano = 5
+            oponente.setVida(oponente.getVida() - dano)
+            console.log(`Vida ${oponente.constructor.name} depois do ataque: ${oponente.getVida()}`)
+        })
+    }
+}
+
+const jogo = new Jogo()
+jogo.adicionarPersonagem(guerreiro)
+jogo.adicionarPersonagem(mago)
+jogo.adicionarPersonagem(arqueiro)
+jogo.executarAtaques()
+jogo.adicionarPersonagem(new Guerreiro(10, 5, "espada"))
+jogo.adicionarPersonagem(new Mago(10, 5, "magia"))
+jogo.adicionarPersonagem(new Arqueiro(10, 5, 'arco'))
+jogo.turno()
