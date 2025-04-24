@@ -22,6 +22,9 @@ class Guerreiro extends Personagem {
         super(vida, mana)
         this.arma = arma
     }
+    atacar() {
+        console.log(`${this.nome} ataca com ${this.arma}!`)
+    }
 }
 
 class Mago extends Personagem {
@@ -29,12 +32,19 @@ class Mago extends Personagem {
         super(vida, mana)
         this.magia = magia
     }
+    usarMagia() {
+        console.log(`${this.nome} usarMagia`)
+    }
 }
 
 class Arqueiro extends Personagem {
     constructor(nome, vida, mana, arco) {
         super(nome, vida, mana)
         this.arco = arco
+    }
+
+atacar() {
+    console.log(`${this.nome} atira com ${this.arco}!`)
     }
 }
 
